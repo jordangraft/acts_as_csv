@@ -66,7 +66,7 @@ end
 Include in your Gemfile:
 
 ```
-	gem 'acts_as_csv' git: 'git@git.cratebind.com:cratebind/acts_as_csv.git', ref: 'stable-1.0'
+  gem 'acts_as_csv', git: 'git@git.cratebind.com:cratebind/acts_as_csv.git', branch: 'stable-1.0'
 ```
 
 # Angular.js, ResourceController and fully-functional downloads
