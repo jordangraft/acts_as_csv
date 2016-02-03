@@ -38,7 +38,7 @@ You can add additional columns to be outputted in the default CSV export by addi
 class Order < ActiveRecord::Base
 
 	# needs to return an array of strings representing method names that exist for the model
-	def optional_csv_attributes
+	def self.optional_csv_attributes
 		['state']
 	end
 
@@ -55,7 +55,7 @@ Some columns should be filtered from output and you can create model level filte
 class Order < ActiveRecord::Base
 	
 	# again it needs to return an array of strings 
-	def filter_names
+	def self.filter_names
 		['ssn', 'credit_card', 'password']
 	end
 

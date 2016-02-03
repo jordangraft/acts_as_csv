@@ -1,3 +1,11 @@
+GIT
+  remote: https://github.com/jordangraft/nulldb.git
+  revision: 93294d8b2f43787dbd932fe97ccbb8d6428fcd85
+  ref: 93294d8b2f43787dbd932fe97ccbb8d6428fcd85
+  specs:
+    activerecord-nulldb-adapter (0.3.1)
+      activerecord (>= 2.0.0)
+
 PATH
   remote: .
   specs:
@@ -14,8 +22,6 @@ GEM
       activemodel (= 4.2.5.1)
       activesupport (= 4.2.5.1)
       arel (~> 6.0)
-    activerecord-nulldb-adapter (0.3.2)
-      activerecord (>= 2.0.0)
     activesupport (4.2.5.1)
       i18n (~> 0.7)
       json (~> 1.7, >= 1.7.7)
@@ -62,7 +68,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  activerecord-nulldb-adapter
+  activerecord-nulldb-adapter!
   acts_as_csv!
   pry
   rspec
