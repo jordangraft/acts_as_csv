@@ -1,5 +1,5 @@
-require 'active_record'
 
+require 'active_record'
 ##
 # Extend the ability to create csv from ActiveRecord models
 
