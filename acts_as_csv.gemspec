@@ -9,9 +9,8 @@ Gem::Specification.new do |s|
   s.files       = ["lib/acts_as_csv.rb"]
   s.license       = 'MIT'
 
-  s.add_dependency 'activerecord'
-  
-  s.add_development_dependency "pry"
+  s.add_development_dependency 'activerecord'
   s.add_development_dependency "rspec"
+  s.add_development_dependency "pry"
   s.add_development_dependency "simplecov"
 end

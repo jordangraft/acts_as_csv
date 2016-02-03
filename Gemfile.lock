@@ -10,7 +10,6 @@ PATH
   remote: .
   specs:
     acts_as_csv (1.0.0)
-      activerecord
 
 GEM
   remote: https://rubygems.org/
@@ -68,6 +67,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  activerecord
   activerecord-nulldb-adapter!
   acts_as_csv!
   pry
