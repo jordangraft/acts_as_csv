@@ -76,27 +76,13 @@ end
 Here's the ResourceController setup with an amended index method to catch the .csv format request:
 
 ```
-class Api::ResourceController < Api::BaseController
-  before_action :set_klass
-  before_action :set_resource, only: [:show, :update, :destroy]
+class OrdersController < ApplicationController
 
   def index
-    if params[:all]
-      @resources = @klass.all.accessible_by(current_ability)
-    else
-      build_predicate
-      @q = @klass.ransack(@predicate)
-      if request.format.csv?
-        @resources = @q.result.accessible_by(current_ability).to_a.uniq
-      else
-        @resources = @q.result.accessible_by(current_ability).page(params[:page]).to_a.uniq
-        build_page_count_headers(@q.result.count)
-        build_cache_response(@predicate)
-      end
-    end
+    ...
     respond_to do |format|
       format.json { render :index }
-      format.csv { send_data build_csv, filename: "#{@klass.to_s}-#{Date.today.to_s}.csv" }
+      format.csv { send_data build_csv, filename: "Orders-#{Date.today}.csv" }
     end
   end
 
@@ -104,23 +90,9 @@ class Api::ResourceController < Api::BaseController
 
     def build_csv
       CSV.generate do |csv|
-        csv << @klass.csv_columns
-        @resources.each { |record| csv << record.to_csv }
+        csv << Order.csv_columns
+        @orders.each { |order| csv << order.to_csv }
       end
-    end
-
-    def build_predicate
-      if params[:initial] && params[:cache_key]
-        terms = JSON.try(:parse, $redis.hget('cache', params[:cache_key])) rescue nil
-        @predicate = terms ? terms : params[:q]
-      else
-        @predicate = params[:q]
-        $redis.hset('cache', params[:cache_key], params[:q].to_json) rescue true if params[:cache_key]
-      end
-    end
-
-    def set_resource
-      @resource = @klass.accessible_by(current_ability).find(params[:id])
     end
 
 end
