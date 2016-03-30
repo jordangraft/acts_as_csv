@@ -2,13 +2,22 @@
 
 Extend default CSV behavior to Active Record models making it easier to offer CSV downloads.  Default behavior is to iterate over all ```belongs_to```, ```has_one``` and ```has_many``` associations and add methods for names and counts.
 
-## Default Associations Output Behavior
+# Installation
+Include in your Gemfile:
 
-### Singluar (belongs_to and has_one)
+```
+  gem 'acts_as_csv', git: 'https://github.com/jordangraft/acts_as_csv.git', branch: 'stable-1.0'
+```
+
+You can get the list of columns for a class by calling ```MyKlass.csv_columns```.  This includes columns for singular and plural associations as well as any additional custom columns you configure (see below).  You can then call ```to_csv``` on an instance of an ActiveRecord model and it will export the objects attributes to CSV in order ot the columns for that class.  
+
+# Default Associations Output Behavior
+
+## Singluar (belongs_to and has_one)
 
 For ```belongs_to``` and ```has_one``` associations, the ```to_csv``` instance method and ```csv_column s``` class method will check if the target model has a name attribute and will output if it exists. Otherwise it will default to outputting the ```_id``` attribute of the target model.
 
-### Multipe (has_many)
+## Multipe (has_many)
 
 For ```has_many``` associations, the default behavior is to add a ```count``` attribute.  This can be overridden by adding a method in the class of the model you want to ovverride.  Example below:
 
@@ -60,13 +69,6 @@ class Order < ActiveRecord::Base
 	end
 
 end
-```
-
-# Installation
-Include in your Gemfile:
-
-```
-  gem 'acts_as_csv', git: 'https://github.com/jordangraft/acts_as_csv.git', branch: 'stable-1.0'
 ```
 
 # Angular.js, ResourceController and fully-functional downloads
