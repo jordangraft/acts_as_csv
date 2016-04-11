@@ -2,8 +2,6 @@
 
 Extend default CSV behavior to Active Record models making it easier to offer CSV downloads.  Default behavior is to iterate over all ```belongs_to```, ```has_one``` and ```has_many``` associations and add methods for names and counts.
 
-<<<<<<< HEAD
-
 ## Installation and Usage
 
 ```
