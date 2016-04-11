@@ -2,6 +2,35 @@
 
 Extend default CSV behavior to Active Record models making it easier to offer CSV downloads.  Default behavior is to iterate over all ```belongs_to```, ```has_one``` and ```has_many``` associations and add methods for names and counts.
 
+
+## Installation and Usage
+
+```
+gem 'acts_as_csv'
+$ bundle update
+```
+
+And then for an ```Order``` model you can do the following:
+
+```
+rails c
+=> Order.first.to_csv
+# ['1', 'Some Name']
+=> Order.csv_columns
+# ['id', 'name']
+```
+
+So a build_csv method would look something like this:
+
+```
+def self.build_csv(collection)
+  CSV.generate do |csv|
+    csv << csv_columns
+    collection.each { |record| csv << record.to_csv }
+  end
+end
+```
+
 ## Default Associations Output Behavior
 
 ### Singluar (belongs_to and has_one)
